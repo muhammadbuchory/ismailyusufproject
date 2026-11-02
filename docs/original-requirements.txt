@@ -1,0 +1,1547 @@
+# MASTER PROMPT — ACADEMIC PORTFOLIO & DIGITAL CV SYSTEM
+
+## Role and Mission
+
+You are a Principal Laravel Engineer, Senior React/TypeScript Architect, UI/UX Designer, Accessibility Specialist, and Software Quality Engineer.
+
+Build a complete, professional, enterprise-quality **Academic Portfolio & Digital Curriculum Vitae Management System**.
+
+The application represents an individual academic, professor, researcher, or professional. It is not a university administration portal.
+
+The visual design should follow a **University Corporate** direction: institutional credibility, sophisticated typography, formal academic presentation, modern interactions, structured information, and excellent usability.
+
+The project must be designed for long-term maintainability, extensibility, reusable components, and future integrations.
+
+**This iteration is frontend-first. DO NOT implement a database, ORM-backed persistence, or production authentication.**
+
+Create functional public pages and a realistic, clearly labeled demonstration dashboard using Laravel PHP configuration files, mock data providers, and React state.
+
+Do not create a static-only website. Interactions should work with mock data wherever feasible.
+
+---
+
+# 1. Technical Stack
+
+Use the latest compatible stable patch releases of:
+
+- Laravel 13.x
+- PHP 8.3 minimum; prefer PHP 8.4 or 8.5 where supported
+- Inertia.js 3.x, if compatible with the selected Laravel starter kit
+- React 19
+- TypeScript in strict mode
+- Tailwind CSS 4
+- shadcn/ui
+- Radix UI primitives where appropriate
+- Vite
+- Lucide React icons
+- Laravel Pint
+- Pest for PHP testing
+- Vitest + React Testing Library for frontend tests
+- Playwright for end-to-end browser testing
+- ESLint and Prettier
+- Zod for validation of frontend form data when beneficial
+
+Optional dependencies, install only when needed:
+
+- React Hook Form for complex forms
+- TanStack Table for advanced dashboard tables
+- Recharts for statistics and visualizations
+- Motion for React for meaningful animations
+- Embla Carousel for accessible carousels
+- DOMPurify for rendering trusted rich-text workflows safely, if absolutely necessary
+
+Before installing dependencies:
+
+1. Review existing project files.
+2. Verify compatibility with Laravel 13 and React 19.
+3. Inspect the official Laravel React starter kit.
+4. Prefer maintained official dependencies.
+5. Avoid redundant frameworks and overlapping libraries.
+6. Do not use deprecated Laravel Breeze or Jetstream scaffolding.
+7. Do not install Livewire, Alpine.js, Vue, or a second frontend framework.
+8. Record major package versions and relevant technical decisions.
+
+Use Laravel's official React starter kit as the reference starting architecture, but remove or disable unnecessary database-dependent authentication scaffolding for this UI-only phase.
+
+Do not automatically create authentication tables, migrations, or default database-dependent routes.
+
+---
+
+# 2. Core Development Constraints
+
+These requirements are non-negotiable:
+
+- No database connection.
+- No database migrations.
+- No Eloquent models.
+- No database seeding.
+- No actual credential verification.
+- No production authentication or authorization.
+- No real user accounts.
+- No permanent write operations.
+- No remote API dependency for basic rendering.
+- No real document repository.
+- No fake security guarantees.
+- All user-facing content must be English.
+- Reusable architecture must be preferred over page-specific duplication.
+
+The public website and dashboard must function without requiring MySQL, PostgreSQL, SQLite, or another database service.
+
+Mock data should originate from Laravel-side PHP configurations and typed providers.
+
+React may use local component state for temporary demonstrations. Changes may reset when the page is refreshed.
+
+Where persistent behavior is eventually required, expose an interface suitable for a future repository or API integration.
+
+---
+
+# 3. Product Scope
+
+Create the following application areas.
+
+## 3.1 Public Academic Website
+
+Implement:
+
+1. Home
+2. About Me
+3. Professional Profile
+4. Education
+5. Academic Appointments
+6. Industry Experience
+7. Work Experience
+8. Professional Memberships
+9. Awards and Honours
+10. Research
+11. Publications
+12. Teaching
+13. Supervision
+14. Academic Publishing Experience
+15. Conference Activities
+16. Intellectual Property
+17. Community Services
+18. Professional Certifications
+19. Consultancy and Advisory Works
+20. Involvement in Academic Activities
+21. News and Events
+22. Voices / Testimonials
+23. Curriculum Vitae
+24. Academic Statistics
+25. Contact
+
+Where multiple pages share structure or overlapping data, use shared feature modules and sensible navigation grouping.
+
+Do not show 25 top-level links simultaneously in desktop navigation.
+
+Suggested main navigation:
+
+- Home
+- About
+- Research
+- Publications
+- Academic Activities
+- Professional Experience
+- Achievements
+- News & Events
+- Curriculum Vitae
+- Contact
+
+Use dropdown menus, mobile navigation, and contextual sidebars for secondary pages.
+
+## 3.2 Internal Dashboard Demonstration
+
+Create a separate dashboard layout with realistic mock workflows:
+
+- Dashboard Overview
+- Academic Profile Management
+- Content Submission
+- Submission Review
+- Pending Verification
+- Approved Records
+- Rejected Records
+- Data Ordering
+- Document Evidence
+- CV Visibility Management
+- Credential Code UI
+- Academic Statistics
+- Testimonials / Messages
+- Mock User Management
+- Interface Settings
+
+Introduce mock user modes:
+
+- Staff
+- Administrator / Verifier
+
+Include a visible "Demo Mode" indicator.
+
+No real authentication, authorization, or credential protection is implemented.
+
+---
+
+# 4. Design Direction: University Corporate
+
+The website must feel like a reputable university research or academic institution.
+
+Desired qualities:
+
+- Credible
+- Professional
+- Sophisticated
+- Minimal but informative
+- Research-focused
+- Clean information hierarchy
+- High readability
+- Spacious and well structured
+- Accessible
+- Responsive
+- Subtle interactive feedback
+
+Avoid:
+
+- Generic SaaS dashboard styling for public pages
+- Excessive gradients
+- Cartoonish imagery
+- Overly rounded containers
+- Distracting parallax
+- Unnecessary animations
+- Excessive glassmorphism
+- Dense navigation
+- Random color choices
+- Generic AI-generated marketing content
+
+## 4.1 Design Tokens
+
+Create centralized design tokens.
+
+Initial suggested palette:
+
+- Primary Navy: #102D4F
+- Secondary Academic Blue: #1E5A8A
+- Accent Gold: #DAA73F
+- Background: #F5F7FA
+- Surface: #FFFFFF
+- Primary Text: #172B45
+- Muted Text: #607085
+- Borders: #E2E8F0
+
+These are starting values, not permanent hardcoded values.
+
+All colors must be defined through reusable tokens.
+
+Support:
+
+- Light theme as the primary theme
+- Optional dark theme using semantic tokens
+- Consistent focus states
+- Accessible contrast
+- Reusable spacing scale
+- Typography scale
+- Border and radius tokens
+- Container widths
+- Responsive breakpoints
+- Elevation and shadow conventions
+
+## 4.2 Typography
+
+Use a professional combination of fonts.
+
+Recommended approach:
+
+- Clear modern sans-serif for general UI
+- Optional restrained editorial serif for academic hero headings
+
+Fonts should be loaded efficiently.
+
+Define reusable typography components for:
+
+- Page titles
+- Section headings
+- Subheadings
+- Body paragraphs
+- Metadata
+- Captions
+- Academic references
+- Citation text
+
+## 4.3 Responsive Behavior
+
+Design mobile-first.
+
+Test at representative widths:
+
+- 375px
+- 768px
+- 1024px
+- 1440px
+- 1920px
+
+All pages must support:
+
+- Responsive navigation
+- Mobile drawer
+- Collapsible contextual sidebar
+- Adaptive tables
+- Mobile-friendly filters
+- Responsive media
+- Keyboard navigation
+- Touch interactions
+- Accessible forms
+
+Do not rely on horizontal scrolling for ordinary page content.
+
+---
+
+# 5. Public Page Design Specifications
+
+## 5.1 Home Page
+
+Build a visually strong academic homepage.
+
+Sections, in order:
+
+1. University-style top header and global navigation
+2. Hero section
+3. Professional identity
+4. Academic highlights
+5. Selected research
+6. Featured publications
+7. Academic activities gallery
+8. Selected achievements
+9. Testimonials / Voices
+10. Call-to-action for Curriculum Vitae
+11. Professional footer
+
+Hero requirements:
+
+- Large professional portrait
+- Academic title and name
+- Current institution
+- Brief motto or professional statement
+- View CV button
+- About Me button
+- Research and Publications navigation
+
+Display academic metrics in restrained statistic cards, using mock values derived from configuration.
+
+Possible metrics:
+
+- Publications
+- Research Projects
+- Completed Supervisions
+- Academic Awards
+
+Activity gallery must support an interactive carousel.
+
+Respect reduced-motion preferences.
+
+## 5.2 About Me
+
+Use a professional two-column desktop layout.
+
+Left profile panel:
+
+- Profile photograph
+- Full name
+- Academic title
+- Institution
+- Country
+- Social and academic profile links
+- Section navigation
+
+Right content area:
+
+- Professional Biography, maximum 250 words
+- Academic identity summary
+- Research Interests
+- Education timeline
+- Current appointments
+- Selected professional highlights
+
+Include social links for:
+
+- Google Scholar
+- Scopus
+- ORCID
+- ResearchGate
+- LinkedIn
+- Personal website
+
+Use placeholder links only when clearly marked as examples; never invent working institutional profiles.
+
+## 5.3 Education
+
+Display qualifications in a chronological timeline.
+
+Support:
+
+- Degree
+- Field of study
+- Institution
+- Years
+- GPA when appropriate
+- Thesis title
+- Supervisor
+- Abstract
+- External link
+- Visibility indicator
+
+The public interface should not display private supporting certificates.
+
+## 5.4 Research
+
+Create a research listing page and reusable research details layout.
+
+Features:
+
+- Search
+- Category filters
+- Ongoing / Completed filter
+- Research area
+- Year range
+- Responsive cards
+- Pagination or accessible client-side "Load More"
+
+Research detail information:
+
+- Title
+- Area
+- Categories
+- Status
+- Duration
+- Funding agency
+- Grant scheme
+- Grant reference
+- Team members
+- Objectives
+- Summary
+- Keywords
+- Related publications
+- External project links
+
+Fields containing sensitive or restricted information must follow the mock visibility projection.
+
+## 5.5 Publications
+
+Implement an academic publication directory.
+
+Features:
+
+- Search by title and author
+- Year filtering
+- Publication type
+- Indexing database filters
+- Sort by newest or oldest
+- Publication detail cards
+- DOI or external publication links
+- Abstract expand/collapse
+- Citation display
+- Copy citation interaction
+- Empty results state
+
+Types include:
+
+Journal Article, Conference Paper, Book, Book Chapter, Patent, Review Article, Editorial, Technical Report, Thesis/Dissertation, and Other.
+
+Indexing examples:
+
+Scopus, Web of Science, IEEE Xplore, PubMed, DOAJ, and other sources.
+
+Use actual URLs only when present in validated mock fixtures.
+
+## 5.6 Teaching
+
+Use a responsive course directory with:
+
+- Course title
+- Course code
+- Credit hours
+- Academic level
+- Teaching role
+- Teaching language
+- Teaching mode
+- Academic year
+- Institution
+- Synopsis
+
+Support filtering and expandable course details.
+
+## 5.7 Supervision
+
+Display supervised students and academic projects using a professional directory.
+
+Features:
+
+- Academic level
+- Supervision role
+- Supervision type
+- Status
+- Research area
+- Academic year
+- Institution
+
+Also implement academic statistics:
+
+- Bachelor's completed
+- Master's completed
+- Doctoral completed
+- Ongoing supervision
+
+Do not publicly expose student identifiers or personal information unless the mock visibility projection explicitly permits them.
+
+## 5.8 Additional Academic Modules
+
+Create reusable listing and detail templates for:
+
+- Appointments
+- Industry Experience
+- Professional Memberships
+- Awards
+- Publishing Experience
+- Conferences
+- Intellectual Property
+- Community Services
+- Certifications
+- Consultancy
+- Academic Involvement
+
+Use the applicable domain-specific metadata, but reuse generic presentation primitives.
+
+Avoid building a different table or card component for every module.
+
+## 5.9 News & Events
+
+Create a rich academic activity page with:
+
+- News listing
+- Event cards
+- Image gallery
+- Video cards
+- Event details
+- Category and date filtering
+- Lightbox where appropriate
+
+Use local placeholder image assets or clearly identified demonstration media.
+
+Do not use copyrighted images from third-party institutional websites without appropriate permission.
+
+## 5.10 Voices
+
+Create a testimonial section.
+
+Each testimonial may include:
+
+- Name
+- Position
+- Institution
+- Quote
+- Optional photo
+
+Support:
+
+- Featured testimonials
+- Testimonial cards
+- Accessible carousel
+- Responsive layout
+
+## 5.11 Contact
+
+Create a formal contact page.
+
+Display only public-safe demonstration information.
+
+Include:
+
+- Institutional email
+- Optional professional contact methods
+- Office location
+- Academic social links
+- Contact form UI
+
+The form must support:
+
+- Required field validation
+- Email validation
+- Message input
+- Accessible error messages
+- Mock submit confirmation
+- Anti-spam verification placeholder
+
+Do not send emails or save messages.
+
+Do not publicly display private home addresses.
+
+---
+
+# 6. Curriculum Vitae Module
+
+Implement three CV presentation modes:
+
+1. Public
+2. Public with Credential Code
+3. Private with Credential Code
+
+## Public
+
+- Accessible by everyone
+- Displays a limited academic CV
+- Can be viewed and printed
+- Must not contain private mock fields
+
+## Public with Credential Code
+
+- Display a credential entry dialog
+- Provide a clearly labeled demo unlock experience
+- Show an extended CV mock projection
+- Allow print preview
+
+## Private with Credential Code
+
+- Show a separate restricted CV presentation
+- Use a demo access state only
+- Include additional approved mock information
+- Clearly indicate that authorization is not implemented
+
+IMPORTANT:
+
+Credential dialogs in this phase are presentation-only simulations.
+
+Never imply that client-side state protects actual confidential data.
+
+Do not send private mock data to public page props by default.
+
+Use separate backend-side visibility projections to determine which demonstration fields are returned to each page.
+
+For production, these mock modes must eventually be replaced by real server-side authentication and authorization.
+
+## CV Presentation
+
+Create a dedicated printable CV layout.
+
+Features:
+
+- Professional header
+- Academic summary
+- Education
+- Appointments
+- Research
+- Publications
+- Teaching
+- Supervision
+- Awards
+- Professional memberships
+- Other approved academic activities
+
+Support:
+
+- Print button
+- Print-specific CSS
+- A4-friendly layout
+- Page-break control
+- Readable headings
+- Hide navigation and interactive controls when printing
+
+The browser's print-to-PDF capability is sufficient for this phase.
+
+Do not implement an actual protected document download system.
+
+---
+
+# 7. Dashboard UI/UX Specifications
+
+## 7.1 Dashboard Layout
+
+Create:
+
+- Dashboard sidebar
+- Header with breadcrumbs
+- Mock user selector
+- Notification placeholder
+- Demo badge
+- Global search UI
+- Responsive content area
+
+Use the same design tokens as the public website, while allowing a more compact administrative layout.
+
+## 7.2 Overview
+
+Show statistic cards for:
+
+- Pending Verification
+- Approved Records
+- Rejected Records
+- Total Publications
+- Research Projects
+- Completed Supervisions
+- Submission Trends
+
+Use mock data only.
+
+Provide reusable chart components with accessible summaries.
+
+## 7.3 Content Submission
+
+Create a generic academic entry form architecture.
+
+Support representative forms for:
+
+- Education
+- Research
+- Publication
+- Teaching
+- Supervision
+- Academic Appointments
+- Conferences
+- Awards
+
+Use schema-based forms where useful.
+
+Do not build one giant universal form that hides important domain differences.
+
+Fields may include:
+
+- Text
+- Textarea
+- Number
+- Date
+- Dropdown
+- Multi-select
+- Checkbox
+- Rich-text-like editor
+- External URL
+- File upload demonstration
+- Visibility selection
+
+All academic submissions require a supporting evidence field in the demo workflow.
+
+File uploads should be simulated with local file selection and file metadata preview only.
+
+Do not upload or persist files.
+
+Supported example UI states:
+
+- Draft
+- Submitted
+- Pending Review
+- Approved
+- Rejected
+
+Staff may edit or delete local drafts before submission.
+
+After submission, lock the staff editing controls in the demonstration.
+
+## 7.4 Administrator Verification
+
+Create a verification queue UI.
+
+Show:
+
+- Submission ID
+- Academic category
+- Record title
+- Submitted by
+- Submission date
+- Evidence status
+- Visibility
+- Review state
+
+Provide:
+
+- Review Details
+- Accept
+- Reject
+- Edit
+- Delete
+- Reorder
+
+Make all actions operate on transient mock state only.
+
+Provide visible confirmation dialogs and feedback.
+
+A rejected item must not appear as approved.
+
+An approved item may appear in an in-memory public preview, but must not imply permanent publication.
+
+## 7.5 Reordering
+
+Implement drag-and-drop or accessible move-up/move-down controls.
+
+Do not require a database.
+
+The ordering should be held in temporary state.
+
+Provide keyboard-accessible alternatives.
+
+## 7.6 Mock Role Behavior
+
+Mock roles:
+
+Staff:
+- View assigned submission screens
+- Create local drafts
+- Edit drafts
+- Delete drafts
+- Submit entries
+- See limited review status
+
+Administrator:
+- Review pending entries
+- Approve or reject
+- Reorder approved content
+- Edit mock records
+- View administrative statistics
+
+The role switcher must clearly state it is not a security boundary.
+
+---
+
+# 8. Architecture and Reusability
+
+Use a modular feature-based architecture.
+
+Separate:
+
+- Business/domain data
+- Data providers
+- Presentation components
+- Page layouts
+- Feature-specific components
+- Shared UI primitives
+- Validation
+- Utilities
+- Type definitions
+
+Recommended React feature modules:
+
+- profile
+- education
+- research
+- publications
+- teaching
+- supervision
+- appointments
+- achievements
+- activities
+- cv
+- dashboard
+- verification
+- contact
+
+Build shared presentation components:
+
+- PageHeader
+- SectionHeader
+- Breadcrumbs
+- AcademicCard
+- ResearchCard
+- PublicationCard
+- Timeline
+- StatisticCard
+- MetadataList
+- FilterToolbar
+- SearchInput
+- EmptyState
+- ErrorState
+- LoadingSkeleton
+- Pagination
+- StatusBadge
+- VisibilityBadge
+- ConfirmationDialog
+- AcademicProfilePanel
+- PrintSection
+- ResponsiveDataTable
+
+Do not abstract components prematurely.
+
+Extract components when they have repeated use, stable semantics, or a clear design-system responsibility.
+
+Prefer composition over excessive configuration props.
+
+Use consistent naming conventions.
+
+---
+
+# 9. Laravel Mock Data Architecture
+
+Create PHP configuration and typed provider classes.
+
+Example concepts:
+
+- AcademicProfileProvider
+- ResearchProvider
+- PublicationProvider
+- EducationProvider
+- SupervisionProvider
+- AcademicStatisticsProvider
+- CvProjectionProvider
+
+Create interfaces that later allow implementations to be swapped.
+
+Example:
+
+AcademicContentRepository contract
+
+Initial implementation:
+ConfigAcademicContentRepository
+
+Potential future implementation:
+DatabaseAcademicContentRepository
+
+Only implement the config-backed version now.
+
+Use Laravel controllers to retrieve and normalize mock data.
+
+Pass explicit typed page props to Inertia.
+
+Avoid sending entire configuration files or unrestricted datasets to all frontend pages.
+
+Ensure that:
+
+- React components do not know where records originate.
+- Controllers remain thin.
+- Data transformations are centralized.
+- Mock data is deterministic.
+- Dates use a consistent format.
+- IDs are stable.
+- All sample data is clearly labeled demonstration data.
+- Visibility filtering is applied before sending props.
+
+Create representative but fictional academic datasets.
+
+Use academically realistic structure without fabricating actual achievements for a real individual.
+
+---
+
+# 10. TypeScript Architecture
+
+Use strict TypeScript settings.
+
+Create domain types and page-specific types.
+
+Examples:
+
+- AcademicProfile
+- EducationRecord
+- ResearchProject
+- PublicationRecord
+- TeachingRecord
+- SupervisionRecord
+- EvidenceMetadata
+- ContentVisibility
+- SubmissionStatus
+- AcademicStatistic
+- CredentialViewMode
+
+Avoid `any` unless justified.
+
+Avoid unsafe type assertions.
+
+Use discriminated unions for content states when appropriate.
+
+For dynamic form schemas, prefer typed mappings over unstructured data.
+
+Ensure Inertia page props remain well defined.
+
+Use runtime validation only where it adds actual safety.
+
+---
+
+# 11. Accessibility
+
+Aim for WCAG 2.2 AA.
+
+Requirements:
+
+- Semantic HTML
+- Correct heading hierarchy
+- Visible keyboard focus
+- Accessible dialogs
+- Proper labels
+- Screen-reader-friendly alerts
+- Adequate contrast
+- Keyboard-accessible navigation
+- No keyboard traps
+- Accessible carousel controls
+- Accessible tables
+- Correct form errors
+- Reduced motion support
+- Meaningful alt text
+- Logical tab order
+
+Prefer accessible shadcn/ui and Radix primitives where appropriate.
+
+Do not use visual styling as a substitute for accessible interaction behavior.
+
+---
+
+# 12. Performance and SEO
+
+Treat the public website as search-engine-facing.
+
+Implement:
+
+- Meaningful page titles
+- Meta descriptions
+- Canonical URL strategy
+- Open Graph metadata where supported
+- Structured data appropriate for an academic person
+- Responsive image handling
+- Lazy loading below-the-fold media
+- Code splitting
+- Efficient component rendering
+- Stable layout dimensions
+- Optimized font loading
+- Accessible loading states
+
+Evaluate Inertia SSR for public pages.
+
+Prefer SSR if compatible and operationally reasonable.
+
+Document Node.js SSR runtime requirements.
+
+The internal demonstration dashboard does not require search engine indexing.
+
+Do not claim SEO readiness solely because React components contain metadata.
+
+---
+
+# 13. Testing and Quality Assurance
+
+Configure appropriate testing tools.
+
+Minimum tests:
+
+## Laravel / PHP
+
+- Public route availability
+- Mock provider outputs
+- Data normalization
+- Visibility projections
+- Dashboard mock route availability
+
+## React
+
+- Component rendering
+- Navigation behavior
+- Search and filtering
+- Pagination
+- Form validation
+- Demo status transitions
+- Mock role switcher
+- CV mode presentation
+- Empty and error states
+
+## Playwright
+
+Test important user journeys:
+
+1. Open Home.
+2. Navigate to About Me.
+3. Filter Publications.
+4. Open a Research detail.
+5. Open Public CV.
+6. Use demo credential dialog.
+7. View the dashboard.
+8. Create and submit a mock draft.
+9. Switch to administrator.
+10. Approve or reject a mock entry.
+11. Test mobile navigation.
+12. Verify basic keyboard accessibility.
+
+Run type-checking, linting, formatting verification, and production build.
+
+Record which checks passed.
+
+Never report success for checks that were not executed.
+
+---
+
+# 14. OpenAI Codex Configuration
+
+Create an `AGENTS.md` file in the repository root.
+
+It should explain:
+
+- Project purpose
+- Selected technology
+- No-database constraint
+- Source of mock data
+- Architecture conventions
+- Coding style
+- Testing commands
+- UI/UX design principles
+- Accessibility requirements
+- File ownership boundaries
+- Rules for adding dependencies
+- Rules for modifying shared components
+
+Keep the file concise and operational.
+
+Do not overload `AGENTS.md` with the entire project specification.
+
+Create detailed project documentation under `docs/`.
+
+Suggested files:
+
+- docs/product-requirements.md
+- docs/design-system.md
+- docs/architecture.md
+- docs/page-inventory.md
+- docs/mock-data-contracts.md
+- docs/visibility-model.md
+- docs/component-catalog.md
+- docs/testing-guide.md
+- docs/future-database-integration.md
+- docs/implementation-progress.md
+
+Maintain documentation as the implementation evolves.
+
+---
+
+# 15. Repository Skills
+
+Create reusable Codex skills under `.agents/skills/`.
+
+Suggested skills:
+
+## frontend-design
+
+Trigger when implementing or reviewing user interfaces.
+
+Responsibilities:
+
+- Design-system compliance
+- Responsive layout
+- Visual hierarchy
+- Reusable components
+- Professional visual quality
+- Accessibility checks
+
+## laravel-inertia
+
+Trigger when modifying routes, controllers, Inertia props, or Laravel providers.
+
+Responsibilities:
+
+- Laravel 13 conventions
+- Thin controllers
+- Typed providers
+- Correct Inertia integration
+- No database dependencies
+
+## react-typescript
+
+Trigger when modifying React components or TypeScript domain models.
+
+Responsibilities:
+
+- React 19 best practices
+- Strict typing
+- Reusable hooks
+- Component composition
+- State management discipline
+
+## mock-data-contracts
+
+Trigger when adding domain datasets, provider interfaces, or page props.
+
+Responsibilities:
+
+- Consistent fields
+- Stable identifiers
+- Data normalization
+- Visibility-safe projections
+- Future repository compatibility
+
+## accessibility-audit
+
+Trigger when introducing navigation, forms, modals, tables, or other interactive components.
+
+Responsibilities:
+
+- WCAG 2.2 AA checks
+- Keyboard behavior
+- Focus management
+- Screen-reader support
+- Responsive accessibility
+
+## performance-seo
+
+Trigger when changing public pages, images, loading behavior, metadata, or SSR.
+
+Responsibilities:
+
+- Core Web Vitals
+- Asset optimization
+- SSR compatibility
+- Metadata
+- Structured data
+
+## testing-qa
+
+Trigger when completing a feature or performing release verification.
+
+Responsibilities:
+
+- PHPUnit/Pest test strategy
+- Vitest
+- Playwright
+- Lint
+- Type checks
+- Build validation
+- Regression checks
+
+## architecture-review
+
+Trigger when introducing new modules, dependencies, abstractions, or cross-feature changes.
+
+Responsibilities:
+
+- Detect duplication
+- Prevent premature abstraction
+- Validate dependency boundaries
+- Assess maintainability
+- Preserve future data-source flexibility
+
+Every skill must include:
+
+- A valid `SKILL.md`
+- Name and description metadata
+- A clear trigger
+- A short, actionable workflow
+- Concrete expected outputs
+
+Add references or scripts only when they materially improve execution.
+
+Do not make every skill mandatory for every task.
+
+---
+
+# 16. Recommended Project Structure
+
+Use this structure as a guide, adapting to the installed starter kit:
+
+```text
+app/
+  Contracts/
+  Data/
+  Http/
+    Controllers/
+      Public/
+      Dashboard/
+  Providers/
+    Academic/
+
+config/
+  academic/
+    profile.php
+    education.php
+    research.php
+    publications.php
+    teaching.php
+    supervision.php
+    achievements.php
+    activities.php
+
+resources/
+  js/
+    components/
+      ui/
+      shared/
+      academic/
+      dashboard/
+    features/
+      profile/
+      education/
+      research/
+      publications/
+      teaching/
+      supervision/
+      cv/
+      dashboard/
+      verification/
+    layouts/
+      public/
+      dashboard/
+    pages/
+      public/
+      dashboard/
+    hooks/
+    lib/
+    types/
+    styles/
+  css/
+    app.css
+
+routes/
+  web.php
+
+tests/
+  Feature/
+  Unit/
+  Browser/
+
+docs/
+  architecture.md
+  design-system.md
+  component-catalog.md
+  implementation-progress.md
+
+.agents/
+  skills/
+    frontend-design/
+    laravel-inertia/
+    react-typescript/
+    mock-data-contracts/
+    accessibility-audit/
+    performance-seo/
+    testing-qa/
+    architecture-review/
+
+AGENTS.md
+```
+
+Do not force this structure if it conflicts with useful Laravel 13 starter-kit conventions.
+
+Keep the architecture easy to navigate.
+
+---
+
+# 17. Implementation Phases
+
+Do not attempt to build the entire application in one uncontrolled pass.
+
+Use the following phases.
+
+## Phase 0 — Repository Audit and Foundation
+
+- Inspect the project.
+- Identify installed dependencies.
+- Verify Laravel version.
+- Establish application conventions.
+- Define architectural decisions.
+- Configure mock providers.
+- Prepare Codex instructions.
+- Create initial documentation.
+- Configure testing and quality tools.
+
+Deliver a working Laravel + React + Inertia application.
+
+## Phase 1 — Design System
+
+Implement:
+
+- Design tokens
+- Typography
+- Buttons
+- Inputs
+- Cards
+- Badges
+- Dialogs
+- Tables
+- Navigation
+- Layout primitives
+- Theme support
+- Loading and empty states
+
+Deliver a reusable component foundation.
+
+## Phase 2 — Public Core Pages
+
+Implement:
+
+- Home
+- About Me
+- Academic Profile
+- Education
+- Academic Appointments
+- Site navigation and footer
+
+Achieve high visual quality before expanding.
+
+## Phase 3 — Research and Academic Content
+
+Implement:
+
+- Research
+- Publications
+- Teaching
+- Supervision
+- Academic Publishing
+- Conferences
+- Intellectual Property
+
+Implement filters and detail views.
+
+## Phase 4 — Remaining Public Modules
+
+Implement:
+
+- Work Experience
+- Industry Experience
+- Memberships
+- Awards
+- Certifications
+- Community Services
+- Consultancy
+- Academic Involvement
+- News & Events
+- Voices
+- Contact
+- Academic Statistics
+
+## Phase 5 — Curriculum Vitae
+
+Implement:
+
+- Public CV
+- Credential dialog
+- Extended demo CV
+- Private demo CV
+- Print layout
+- Visibility projections
+
+Clearly distinguish simulation from actual authorization.
+
+## Phase 6 — Dashboard Demonstration
+
+Implement:
+
+- Dashboard layout
+- Staff mode
+- Administrator mode
+- Mock submission form
+- Verification queue
+- Approval/rejection transitions
+- Reordering
+- Statistics
+- Document evidence UI
+
+## Phase 7 — Quality and Refinement
+
+Perform:
+
+- Desktop visual review
+- Mobile visual review
+- Accessibility audit
+- Performance review
+- SEO review
+- TypeScript checks
+- Automated testing
+- Production build
+- Documentation review
+- Component duplication review
+
+---
+
+# 18. Development Workflow
+
+For each phase:
+
+1. Inspect relevant code and documentation.
+2. Identify the affected modules.
+3. Create a concise implementation plan.
+4. Implement the smallest maintainable solution.
+5. Reuse existing primitives where appropriate.
+6. Add or update meaningful tests.
+7. Run relevant quality checks.
+8. Verify the UI in a browser if available.
+9. Update progress documentation.
+10. Summarize actual results and outstanding limitations.
+
+Keep implementation incremental.
+
+Do not replace working shared components without reviewing their consumers.
+
+Do not introduce new frameworks to solve problems already handled by the current stack.
+
+Do not add AI functionality merely because Laravel 13 offers AI-related capabilities.
+
+Keep the system focused on the actual academic portfolio requirements.
+
+---
+
+# 19. Acceptance Criteria
+
+The project is successful when:
+
+- Laravel 13 runs without a database.
+- Public pages use React, TypeScript, and Inertia.
+- All required academic categories have usable public interfaces.
+- The site has a consistent University Corporate visual identity.
+- Desktop, tablet, and mobile layouts function correctly.
+- Academic content comes from reusable Laravel mock providers.
+- Research and publications are searchable and filterable.
+- Public CV and demo credential flows render correctly.
+- CV printing works appropriately.
+- Dashboard demo modes are clearly identified.
+- Submission, review, and reorder simulations function.
+- No sensitive mock data leaks into default public props.
+- No permanent persistence is implied.
+- Shared components are reusable.
+- Type-checking and build pass.
+- Important user journeys have automated test coverage.
+- Codex instructions and project documentation exist.
+- Future authentication/database integration boundaries are documented.
+
+---
+
+# 20. Future Extension Strategy
+
+Do not implement these features yet, but prepare sensible integration boundaries for:
+
+- PostgreSQL or MySQL
+- Real authentication
+- Role-based authorization
+- Evidence storage
+- Secure document access
+- Credential issuance, expiration, and revocation
+- Real staff workflows
+- Audit logs
+- REST or JSON:API endpoints
+- Academic publication imports
+- ORCID / Scopus integrations where officially supported
+- Content management
+- Email notifications
+- Search indexing
+- Optional localization
+
+Do not add unnecessary interfaces or packages for hypothetical future features.
+
+Document how the existing mock provider can be replaced incrementally.
+
+---
+
+# 21. Initial Codex Execution Instructions
+
+Start by inspecting the repository and determining whether it is empty or already contains Laravel.
+
+If empty, initialize Laravel 13 using the appropriate official React starter-kit setup, while avoiding or removing database-dependent application behavior in this phase.
+
+Then:
+
+1. Establish the project structure.
+2. Create a concise AGENTS.md.
+3. Create the relevant repository skills.
+4. Set up the design system.
+5. Implement PHP mock data providers.
+6. Implement the public and dashboard layouts.
+7. Build Home and About Me first.
+8. Verify the initial pages in desktop and mobile browser views.
+9. Complete the remaining phases progressively.
+
+Do not stop after generating a proposal or directory tree. Implement working code.
+
+At each meaningful milestone, report:
+
+- What was implemented
+- Which files changed
+- What was tested
+- What remains incomplete
+- Any verified compatibility issue
+
+Use the attached academic portfolio requirements document and approved wireframe as the product reference when they are available in the workspace.
+
+Do not treat sample academic information in the requirements document as verified facts about a real person.
+
+**Final objective: deliver a polished, maintainable, reusable, modern academic website and dashboard demonstration ready for future data-source integration, without implementing a database in this phase.**
